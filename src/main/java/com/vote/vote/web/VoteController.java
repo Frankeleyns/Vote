@@ -24,5 +24,18 @@ public class VoteController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
+	@PostMapping("/cancel")
+	@ResponseBody
+	public ResponseEntity<Void> cancel(@RequestParam String userid,@RequestParam String orgid){
+		voteService.Cancel(userid, orgid);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	@PostMapping("/clear")
+	@ResponseBody
+	public ResponseEntity<Void> clear(@RequestParam String userid){
+		voteService.Clear(userid);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
 	
 }

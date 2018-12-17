@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.hibernate.Criteria;
 import org.hibernate.Filter;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Property;
 import org.springframework.stereotype.Component;
 
@@ -36,6 +37,7 @@ public class OrganizeDao extends BaseDao{
 	
 	public List<Organize> findAllOrganize(){
 		DetachedCriteria dc = DetachedCriteria.forClass(Organize.class);
+		dc.addOrder(Order.asc("id"));
 		Criteria criteria = dc.getExecutableCriteria(getsession());
 		return criteria.list();
 	}

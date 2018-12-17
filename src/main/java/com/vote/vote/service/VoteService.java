@@ -47,5 +47,19 @@ public class VoteService {
 		return object;
 	}
 	
-
+	public void Cancel(String userid,String orgId){
+		User user = userDao.findById(userid);
+		Organize organize = orgDao.findByid(orgId);
+		Vote vote = voteDao.findUserAndOrg(user, organize);
+		voteDao.deleteVote(vote);
+	}
+	
+	public void Clear(String userid){
+		if(userid.equals("999")){
+			voteDao.deleteAll();
+		}else{
+			throw new ServiceException("没有权限");
+		}
+	}
+	
 }

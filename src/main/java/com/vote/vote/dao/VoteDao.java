@@ -51,5 +51,15 @@ public class VoteDao extends BaseDao{
 		Object object = query.getSingleResult();
 		return object;
 	}
+	
+	public void deleteVote(Vote vote){
+		getsession().delete(vote);
+	}
+	
+	public void deleteAll(){
+		String sql = "DELETE FROM vote";
+		Query<?> query = getsession().createNativeQuery(sql);
+		query.executeUpdate();
+	}
 
 }
